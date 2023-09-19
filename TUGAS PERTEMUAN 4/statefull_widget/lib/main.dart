@@ -40,7 +40,6 @@ class _temperaturePageState extends State<temperaturePage> {
   double _result = 0;
   List history = [];
 
-
   void perhitunganSuhu() {
     setState(() {
       if (_newValue == "Kelvin") {
@@ -152,7 +151,18 @@ class _temperaturePageState extends State<temperaturePage> {
             height: 20,
           ),
           Expanded(
-            child: ListView(),
+            child: ListView.separated(
+                padding: const EdgeInsets.all(8),
+                itemCount: history.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: 50,
+                    color: Colors.grey[200],
+                    child: Center(child: Text('${history[index]}'),),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) => const Divider(),
+                ),
           ),
         ],
       ),

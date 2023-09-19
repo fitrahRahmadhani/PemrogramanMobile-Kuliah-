@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -36,25 +35,23 @@ class temperaturePage extends StatefulWidget {
 class _temperaturePageState extends State<temperaturePage> {
   final _formKey = GlobalKey<FormBuilderState>();
   double _inputUser = 0;
-  double _kelvin = 0;
-  double _reamur = 0;
   final inputController = TextEditingController();
-  String _newValue = "Kelvin";
+  String _newValue = "";
   double _result = 0;
   List history = [];
 
+
   void perhitunganSuhu() {
     setState(() {
-      _inputUser = double.parse(inputController.text);
-      if (_newValue == "Kelvin"){
-      _result = _inputUser + 273;
-      history.add('Kelvin: $_result');
-      }else if (_newValue == "Fahrenheit"){
-      _result = (_inputUser * 9/5) + 32;
-      history.add('Fahrenheit: $_result');
-      }else{
-      _result = (4 / 5) * _inputUser;
-      history.add('Reamur: $_result');
+      if (_newValue == "Kelvin") {
+        _result = _inputUser + 273;
+        history.add('Kelvin: $_result');
+      } else if (_newValue == "Fahrenheit") {
+        _result = (_inputUser * 9 / 5) + 32;
+        history.add('Fahrenheit: $_result');
+      } else if (_newValue == "Reamur") {
+        _result = (4 / 5) * _inputUser;
+        history.add('Reamur: $_result');
       }
     });
   }
@@ -70,10 +67,10 @@ class _temperaturePageState extends State<temperaturePage> {
               key: _formKey,
               child: FormBuilderTextField(
                 name: 'suhu',
-                decoration: const InputDecoration(labelText: 'Masukkan suhu (Celcius)'),
+                decoration:
+                    const InputDecoration(labelText: 'Masukkan suhu (Celcius)'),
                 onChanged: (val) {
-                  
-                  val = '';
+                  _inputUser = double.parse(val!);
                 },
               ),
             ),
@@ -83,17 +80,19 @@ class _temperaturePageState extends State<temperaturePage> {
             child: SizedBox(
                 width: double.infinity,
                 child: DropdownSearch<String>(
-                  popupProps: PopupProps.menu(
+                  popupProps: PopupProps.bottomSheet(
                     showSelectedItems: true,
                   ),
                   items: ["Kelvin", "Reamur", "Fahrenheit"],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
                       labelText: "Konfersi ke",
-                      hintText: "country in menu mode",
+                      hintText: "temperature in menu mode",
                     ),
                   ),
-                  onChanged: () {},
+                  onChanged: (value) {
+                    _newValue = value!;
+                  },
                   selectedItem: "Kelvin",
                 )),
           ),
@@ -103,20 +102,7 @@ class _temperaturePageState extends State<temperaturePage> {
           Container(
             child: Column(
               children: [
-                Text(
-                  'Hasil',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                Text(
-                  '346.7',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Result(result: _result),
               ],
             ),
           ),
@@ -133,7 +119,8 @@ class _temperaturePageState extends State<temperaturePage> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      
+                      perhitunganSuhu();
+                      print(history);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
@@ -173,3 +160,34 @@ class _temperaturePageState extends State<temperaturePage> {
   }
 }
 
+class Result extends StatelessWidget {
+  const Result({super.key, required this.result});
+  final double result;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20, bottom: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Hasil',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          Text(
+            result.toStringAsFixed(1),
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+        ],
+      ),
+    );
+    // );
+  }
+}

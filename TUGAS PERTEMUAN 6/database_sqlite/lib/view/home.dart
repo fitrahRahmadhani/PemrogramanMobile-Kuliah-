@@ -14,14 +14,12 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   DbHelper dbHelper = DbHelper();
   int count = 0;
-  late List<Item> itemList;
+  List<Item> itemList = [];
 
-  get itemMapList => null;
   @override
   Widget build(BuildContext context) {
-    // if (itemList == null) {
-    //   itemList = List<Item>.from(itemMapList.map((itemMap) => Item.fromMap(itemMap)));
-    // }
+
+    itemList ??= <Item>[];
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Item'),
@@ -37,15 +35,18 @@ class HomeState extends State<Home> {
             child: SizedBox(
               width: double.infinity,
               child: TextButton(
-                child: Text("Tambah Item"),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.grey[500],
                   disabledForegroundColor: Colors.grey.withOpacity(0.38),
                 ),
+                child: Text(
+                  "Tambah Item",
+                  style: TextStyle(fontSize: 24),
+                ),
                 onPressed: () async {
                   var item = await navigateToEntryForm(
-                      context, Item(name: "", price: 0));
+                      context, Item.origin(name: "", price: 0, kodeBarang: "", stock: 0,));
                   if (item.price != 0) {
                     int result = await dbHelper.insert(item);
                     if (result > 0) {
@@ -60,6 +61,7 @@ class HomeState extends State<Home> {
       ]),
     );
   }
+  
 
   Future<Item> navigateToEntryForm(BuildContext context, Item item) async {
     var result = await Navigator.push(context,
@@ -71,8 +73,10 @@ class HomeState extends State<Home> {
 
   ListView createListView() {
     TextStyle textStyle = Theme.of(context).textTheme.headline5!;
+    var realItemCount = itemList.length ~/ 2;
+
     return ListView.builder(
-      itemCount: count,
+      itemCount: realItemCount,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           color: Colors.white,
@@ -87,25 +91,35 @@ class HomeState extends State<Home> {
               style: textStyle,
             ),
             subtitle: Text(this.itemList[index].price.toString()),
-            trailing: GestureDetector(
-              child: Icon(Icons.delete),
-              onTap: () async {
-//TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
-                int result = await dbHelper.delete(this.itemList[index].id);
-                updateListView();
-              },
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //TODO 4 Panggil Fungsi untuk Edit data
+                IconButton(
+                    onPressed: () async {
+                      var item = await navigateToEntryForm(
+                          context, this.itemList[index]);
+
+                      if (item.price != null) {
+                        int result = await dbHelper.update(item);
+                        if (result > 0) {
+                          updateListView();
+                        }
+                        ;
+                      }
+                      ;
+                    },
+                    icon: const Icon(Icons.edit)),
+                //TODO 3 Panggil Fungsi untuk Hapus data
+                IconButton(
+                    onPressed: () async {
+                      int result =
+                          await dbHelper.delete(this.itemList[index].id);
+                      updateListView();
+                    },
+                    icon: const Icon(Icons.delete)),
+              ],
             ),
-            onTap: () async {
-              var item =
-                  await navigateToEntryForm(context, this.itemList[index]);
-//TODO 4 Panggil Fungsi untuk Edit data
-              if (item.price != null) {
-                int result = await dbHelper.update(item);
-                if (result > 0) {
-                  updateListView();
-                }
-              }
-            },
           ),
         );
       },

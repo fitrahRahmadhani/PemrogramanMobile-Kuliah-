@@ -23,7 +23,9 @@ class DbHelper {
 CREATE TABLE item (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name TEXT,
-price INTEGER
+price INTEGER,
+kodeBarang TEXT,
+stock INTEGER
 )
 ''');
   }
@@ -60,7 +62,8 @@ price INTEGER
   Future<List<Item>> getItemList() async {
     var itemMapList = await select();
     int count = itemMapList.length;
-    List<Item> itemList = List<Item>.from(itemMapList.map((itemMap) => Item.fromMap(itemMap)));
+    List<Item> itemList =
+        List<Item>.from(itemMapList.map((itemMap) => Item.fromMap(itemMap)));
     for (int i = 0; i < count; i++) {
       itemList.add(Item.fromMap(itemMapList[i]));
     }

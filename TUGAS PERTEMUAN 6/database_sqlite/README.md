@@ -1,16 +1,22 @@
-# database_sqlite
+# Tugas dan Praktikum Pertemuan 6
 
-A new Flutter project.
 
-## Getting Started
+### Nama: Fitrah Rahmadhani Ahmad
+### Kelas: SIB 3E
+### NIM 2141762092
+### Hasil:
 
-This project is a starting point for a Flutter application.
+#### Page Home (Daftar Item)
+Terdapat daftar item serta aksi yang dapat dilakukan. Untuk fungsi edit diubah menjadi ikon (tidak lagi menekan list item secara keseluruhan).
 
-A few resources to get you started if this is your first Flutter project:
+![localImage](./lib/assets/Screenshot%202023-10-06%20190206.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### Page Ubah (Edit)
+Terdapat 4 field yang bisa diubah yakni field "Nama Barang", "Harga", "Kode Barang", dan "Stock".  Untuk menyimpan perubahan bisa menekan tombol save. Untuk membatalkan perubahan bisa menekan tombol cancel
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![localImage](./lib/assets/Screenshot%202023-10-06%20190232.png)
+
+#### Page Tambah
+Ketika ingin menambah button "tambah" pada halaman home (daftar item).Terdapat 4 field yang menjadi inputan yakni field "Nama Barang", "Harga", "Kode Barang", dan "Stock".  Untuk menyimpan data bisa menekan tombol save. Untuk membatalkan inputan bisa menekan tombol cancel
+
+![localImage](./lib/assets/Screenshot%202023-10-06%20190311.png)

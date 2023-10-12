@@ -10,7 +10,7 @@ Terdapat dua section, yakni Coming Soon dan Popular. Section Coming Soon menggun
 
 ![localImage](./lib/assets/Screenshot%202023-10-12%20103227.png)
 
-#### Page Ubah (Edit)
-Terdapat 4 field yang bisa diubah yakni field "Nama Barang", "Harga", "Kode Barang", dan "Stock".  Untuk menyimpan perubahan bisa menekan tombol save. Untuk membatalkan perubahan bisa menekan tombol cancel
+#### Movie Detail
+Pada halaman ini menampilkan poster, judul, rating, serta deskripsi dari film yang dipilih pada halaman home
 
-![localImage](./lib/assets/Screenshot%202023-10-06%20190232.png)
+![localImage](./lib/assets/Screenshot%202023-10-12%20200340.png)

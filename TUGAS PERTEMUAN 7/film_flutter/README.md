@@ -1,16 +1,16 @@
-# film_flutter
+# Tugas dan Praktikum Pertemuan 7
 
-A new Flutter project.
+### Nama: Fitrah Rahmadhani Ahmad
+### Kelas: SIB 3E
+### NIM 2141762092
+### Hasil:
 
-## Getting Started
+#### Page Home (Daftar Film)
+Terdapat dua section, yakni Coming Soon dan Popular. Section Coming Soon menggunakan Carousel yang menampilkan backdrop film, judul, serta tanggal rilis film. Section Popular berupa list biasa dan terdapat informasi judul, rating, serta beberapa button pendukung.
 
-This project is a starting point for a Flutter application.
+![localImage](./lib/assets/Screenshot%202023-10-12%20103227.png)
 
-A few resources to get you started if this is your first Flutter project:
+#### Page Ubah (Edit)
+Terdapat 4 field yang bisa diubah yakni field "Nama Barang", "Harga", "Kode Barang", dan "Stock".  Untuk menyimpan perubahan bisa menekan tombol save. Untuk membatalkan perubahan bisa menekan tombol cancel
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![localImage](./lib/assets/Screenshot%202023-10-06%20190232.png)

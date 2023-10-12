@@ -5,8 +5,9 @@ class Upcoming{
   String ?overview;
   String ?posterPath;
   String ?backdropPath;
+  String ?releaseDate;
 
-  Upcoming(this.id, this.title, this.voteAverage, this.overview, this.posterPath, this.backdropPath);
+  Upcoming(this.id, this.title, this.voteAverage, this.overview, this.posterPath, this.backdropPath, this.releaseDate);
 
   Upcoming.fromJson(Map<String, dynamic> parsedJson ){
     this.id = parsedJson['id'];
@@ -15,5 +16,6 @@ class Upcoming{
     this.overview = parsedJson['overview'];
     this.posterPath = parsedJson['poster_path'];
     this.backdropPath = parsedJson['backdrop_path'];
+    this.releaseDate = parsedJson['release_date'];
   }
 }

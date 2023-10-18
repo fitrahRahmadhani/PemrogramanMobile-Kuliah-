@@ -1,16 +1,19 @@
-# fireflutter
+# Tugas dan Praktikum Pertemuan 8
 
-A new Flutter project.
+### Nama: Fitrah Rahmadhani Ahmad
+### Kelas: SIB 3E
+### NIM 2141762092
+### Hasil:
 
-## Getting Started
+#### Login Page
+Terdapat dua input form yang terdiri dari email dan password. Kemudian terdapat tombol Sing Up untuk melakukan login ke frist_screen.dart. Selain itu user juga bisa login menggunakan google sign in.
 
-This project is a starting point for a Flutter application.
+![localImage](./assets/Screenshot%202023-10-18%20122401.png)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### Home
+Ketika user berhasil login, maka akan diarahkan menuju halaman home yang berisi informasi user
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![localImage](./assets/Screenshot%202023-10-17%20155227.png)
+
+
